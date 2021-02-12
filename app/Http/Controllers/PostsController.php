@@ -13,7 +13,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return "s working" ;
+        //
+        return "its working";
     }
 
     /**
@@ -23,7 +24,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        //return view("contact");
+        return "I am create method";
     }
 
     /**
@@ -34,7 +36,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required|min:3',
+            'number' => 'required|int'
+        ]);
+        dd(request('name'), request('number'));
+        //dd($request->all());
+        //dd($request);
     }
 
     /**
@@ -46,6 +54,7 @@ class PostsController extends Controller
     public function show($id)
     {
         //
+        return "Id is " . $id;
     }
 
     /**
@@ -80,5 +89,18 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function contact()
+    {
+        $people = ['Vidya', 'Dirk', 'Giomayra'];
+
+        return view('contact', compact('people'));
+    }
+
+    public function show_post($id, $name, $password)
+    {
+        //return view('post')->with('id', $id);
+        return view('post', compact('id', 'name', 'password'));
     }
 }
